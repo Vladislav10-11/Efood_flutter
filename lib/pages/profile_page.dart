@@ -1,3 +1,6 @@
+import 'package:efood_flutter/components/head_profile.dart';
+import 'package:efood_flutter/components/header.dart';
+import 'package:efood_flutter/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -23,7 +26,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _logout() {
     // Call an async function to log out the user
-    Navigator.pushNamed(context, '/login');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
   }
 
   @override
@@ -39,9 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
+      appBar: HeaderProfile(),
+      backgroundColor: Color(0xffbdbdbd),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -49,21 +54,46 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  '🍔 DeFood',
-                  style: TextStyle(
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
+                Center(
+                  child: Text(
+                    '🍔 DeFood',
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(height: 16.0),
+                Center(
+                    child: Text(
+                  'Email',
+                  style: TextStyle(fontSize: 20),
+                )),
+                SizedBox(
+                  height: 16,
+                ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration:
+                      InputDecoration(filled: true, fillColor: Colors.white),
                   initialValue: _email,
                   enabled: false,
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                    child: Text(
+                  'Name',
+                  style: TextStyle(fontSize: 20),
+                )),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Name'),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
                   initialValue: _name,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -75,8 +105,20 @@ class _ProfilePageState extends State<ProfilePage> {
                     _name = value!;
                   },
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                    child: Text(
+                  'Password',
+                  style: TextStyle(fontSize: 20),
+                )),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration:
+                      InputDecoration(filled: true, fillColor: Colors.white),
                   initialValue: _password,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -88,9 +130,20 @@ class _ProfilePageState extends State<ProfilePage> {
                     _password = value!;
                   },
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                    child: Text(
+                  'Allergies, separated by comma',
+                  style: TextStyle(fontSize: 20),
+                )),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Allergies, separated by comma'),
+                  decoration:
+                      InputDecoration(filled: true, fillColor: Colors.white),
                   initialValue: _inputAllergies,
                   onChanged: (value) {
                     _inputAllergies = value;
@@ -98,11 +151,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 SizedBox(height: 16.0),
                 ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
                   child: Text('Save'),
                   onPressed: _save,
                 ),
                 ElevatedButton(
-                  child: Text('Logout'),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+                  child: Text(
+                    'Logout',
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: _logout,
                 ),
                 if (_error)

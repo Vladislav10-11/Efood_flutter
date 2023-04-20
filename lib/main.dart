@@ -3,6 +3,7 @@ import 'package:efood_flutter/api/auth_provider.dart';
 import 'package:efood_flutter/pages/additives_page.dart';
 import 'package:efood_flutter/pages/home_page.dart';
 import 'package:efood_flutter/pages/login_page.dart';
+import 'package:efood_flutter/pages/profile_page.dart';
 import 'package:efood_flutter/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }

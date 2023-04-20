@@ -14,7 +14,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> login(String email, String password) async {
     final result = await AuthAPI().login(email, password);
     final token = result['token'];
-    _user = result as User?;
+    _user = User.fromJson(result['user']);
     print('user ${_user}');
     print('result ${result}');
     notifyListeners();
@@ -43,7 +43,9 @@ class AuthProvider extends ChangeNotifier {
       required String password}) async {
     final result =
         await AuthAPI().register(email: email, name: name, password: password);
-    _user = result as User?;
+    if (result != null) {
+      _user = User.fromJson(result);
+    }
     notifyListeners();
   }
 
@@ -51,7 +53,7 @@ class AuthProvider extends ChangeNotifier {
     final token = await AuthAPI().getAccessToken();
     if (token != null) {
       final result = await AuthAPI().whoami(token);
-      _user = result as User?;
+      _user = User.fromJson(result[user]);
       notifyListeners();
     }
   }
