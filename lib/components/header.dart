@@ -14,7 +14,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: height,
-      backgroundColor: Color(0xff343a40),
+      backgroundColor: const Color(0xff343a40),
       title: Image.asset(
         'assets/images/logo.jpg',
         fit: BoxFit.contain,
@@ -30,7 +30,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               ),
             );
           },
-          child: Text('Search',
+          child: const Text('Search',
               style: TextStyle(fontSize: 16, color: Color(0xff6c757d))),
         ),
         TextButton(
@@ -38,11 +38,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => AdditivesPage()),
+                builder: ((context) => const AdditivesPage()),
               ),
             );
           },
-          child: Text('addivities',
+          child: const Text('addivities',
               style: TextStyle(fontSize: 16, color: Color(0xff6c757d))),
         ),
         TextButton(
@@ -50,11 +50,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => LoginPage()),
+                builder: ((context) => const LoginPage()),
               ),
             );
           },
-          child: Text('Login',
+          child: const Text('Login',
               style: TextStyle(fontSize: 16, color: Color(0xff6c757d))),
         ),
         TextButton(
@@ -62,11 +62,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => RegisterPage()),
+                builder: ((context) => const RegisterPage()),
               ),
             );
           },
-          child: Text('Register',
+          child: const Text('Register',
               style: TextStyle(fontSize: 16, color: Color(0xff6c757d))),
         ),
       ],

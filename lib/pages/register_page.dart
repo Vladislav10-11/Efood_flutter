@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  RegisterPageState createState() => RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -45,18 +47,20 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       try {
-        await AuthProvider().register(
-          name: _nameController.text,
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
+        await context.read<AuthProvider>().register(
+              name: _nameController.text,
+              email: _emailController.text,
+              password: _passwordController.text,
+            );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => ProfilePage()),
-          ),
-        );
+        if (mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: ((context) => ProfilePage()),
+            ),
+          );
+        }
       } catch (err) {
         setState(() {
           print(err.toString());
@@ -73,29 +77,29 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(),
-      backgroundColor: Color(0xffbdbdbd),
+      appBar: const Header(),
+      backgroundColor: const Color(0xffbdbdbd),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
+                  const Text(
                     'Register',
                     style: TextStyle(fontSize: 20.0),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Name',
                       filled: true,
                       fillColor: Colors.white,
@@ -107,12 +111,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                       filled: true,
                       fillColor: Colors.white,
@@ -125,12 +129,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Password',
                       filled: true,
                       fillColor: Colors.white,
@@ -143,12 +147,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: _repeatPasswordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Repeat password',
                       filled: true,
                       fillColor: Colors.white,
@@ -164,15 +168,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   ElevatedButton(
                     onPressed: _busy ? null : _register,
                     child: _busy
-                        ? CircularProgressIndicator()
-                        : Text('Create account'),
+                        ? const CircularProgressIndicator()
+                        : const Text('Create account'),
                   ),
                   if (_error != null)
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         _error,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
                         ),
